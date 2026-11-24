@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 REPORTS = ROOT / "reports"
 APP = ROOT / "app"
 TESTS = ROOT / "tests"
+MANIFEST = ROOT / "requirements.txt"
 LOCKFILE = ROOT / "requirements.lock"
 SEVERITY_RANK = {"LOW": 1, "MEDIUM": 2, "HIGH": 3}
 CONFIDENCE_RANK = {"LOW": 1, "MEDIUM": 2, "HIGH": 3}
@@ -113,6 +114,8 @@ def run_sca():
             "-m",
             "pip_audit",
             "--requirement",
+            str(MANIFEST),
+            "--requirement",
             str(LOCKFILE),
             "--strict",
             "--no-deps",
@@ -150,7 +153,7 @@ def run_sca():
         if not findings:
             print(f"pip-audit failed without a vulnerability result (exit {result.returncode}).")
         raise RuntimeError("SCA policy blocks every known vulnerability, including unrated findings.")
-    print("SCA passed: no known vulnerabilities in the locked dependency set.")
+    print("SCA passed: no known vulnerabilities in the manifest or locked dependency set.")
 
 
 def run_secret_scan():

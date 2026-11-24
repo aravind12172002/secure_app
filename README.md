@@ -14,9 +14,9 @@ Bearer tokens cross the authentication boundary; users may transfer funds
 only from their own accounts and cancel only their own pending orders. The
 custom tests exercise those ownership and state rules through the API.
 
-The pipeline runs pytest, Bandit SAST, pip-audit dependency scanning and
-detect-secrets. SAST findings of medium or high severity with medium or high
-confidence block; lower severity or confidence findings warn. All known
+The pipeline runs pytest, Bandit SAST, pip-audit scanning of the manifest
+and lockfile, and detect-secrets. SAST findings of medium or high severity
+with medium or high confidence block; lower severity or confidence findings warn. All known
 dependency vulnerabilities, secret findings, scanner errors and failed tests
 block. pip-audit does not consistently supply severity, so it blocks even
 unrated vulnerabilities. Secret verification is disabled to avoid sending

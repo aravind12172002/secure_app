@@ -12,7 +12,8 @@ Set `APP_TOKEN_SIGNING_KEY` to a secret of at least 32 bytes before starting
 the application. Tests use an isolated database and a dummy signing key.
 Bearer tokens cross the authentication boundary; users may transfer funds
 only from their own accounts and cancel only their own pending orders. The
-custom tests exercise those ownership and state rules through the API.
+custom tests exercise those ownership and state rules through the API. Pytest
+prints each test name and result in the CI log.
 
 The pipeline runs pytest, Bandit SAST, pip-audit scanning of the manifest
 and lockfile, and detect-secrets. SAST findings of medium or high severity

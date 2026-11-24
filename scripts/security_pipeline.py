@@ -284,7 +284,7 @@ def run_baseline_checks():
     checks = (
         (
             "application and custom security tests",
-            [sys.executable, "-m", "pytest", "-q", str(TESTS)],
+            [sys.executable, "-m", "pytest", "-v", str(TESTS)],
         ),
     )
     for label, command in checks:

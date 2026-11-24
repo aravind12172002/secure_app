@@ -22,6 +22,10 @@ block. pip-audit does not consistently supply severity, so it blocks even
 unrated vulnerabilities. Secret verification is disabled to avoid sending
 potential credentials to external services.
 
+CI also scans all fetched Git history with pinned Gitleaks. Findings fail the
+job, and its JSON artifact contains only rule IDs, commit hashes, line numbers
+and SHA-256 hashes of file paths; raw matches and commit metadata are omitted.
+
 The pipeline also scans temporary fixtures: an insecure TLS request must
 trigger blocking Bandit rule B501, and a low-severity assertion must warn
 without failing. The fixtures are deleted and the secure baseline is checked

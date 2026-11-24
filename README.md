@@ -26,3 +26,9 @@ The pipeline also scans temporary fixtures: an insecure TLS request must
 trigger blocking Bandit rule B501, and a low-severity assertion must warn
 without failing. The fixtures are deleted and the secure baseline is checked
 again. GitHub Actions retains the machine-readable reports as an artifact.
+
+GitHub Actions evidence:
+
+- [Secure baseline and warning-only check](https://github.com/aravind12172002/secure_app/actions/runs/45385773814)
+- [Controlled B501 finding blocks the build](https://github.com/aravind12172002/secure_app/actions/runs/45385935568)
+- [Reverted branch passes again](https://github.com/aravind12172002/secure_app/actions/runs/45386064247)

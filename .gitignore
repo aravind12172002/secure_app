@@ -1,0 +1,12 @@
+__pycache__/
+.pytest_cache/
+app/instance/
+instance/
+.benchmarks/
+reports/
+.env
+.env.*
+!.env.example
+brief.docx
+README.md
+task.txt

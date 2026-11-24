@@ -14,6 +14,7 @@ Bearer tokens cross the authentication boundary; users may transfer funds
 only from their own accounts and cancel only their own pending orders. The
 custom tests exercise those ownership and state rules through the API. Pytest
 prints each test name and result in the CI log.
+GitHub Actions runs on pushes and pull requests.
 
 The pipeline runs pytest, Bandit SAST, pip-audit scanning of the manifest
 and lockfile, and detect-secrets. SAST findings of medium or high severity

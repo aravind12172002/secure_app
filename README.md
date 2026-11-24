@@ -26,6 +26,11 @@ CI also scans all fetched Git history with pinned Gitleaks. Findings fail the
 job, and its JSON artifact contains only rule IDs, commit hashes, line numbers
 and SHA-256 hashes of file paths; raw matches and commit metadata are omitted.
 
+Pinned zizmor scans every GitHub Actions workflow offline; online-only audits
+are not run. Medium/high severity findings with medium/high confidence block,
+and other findings warn. Its JSON artifact omits workflow source and hashes
+file paths so findings do not expose credentials embedded in workflow YAML.
+
 The pipeline also scans temporary fixtures: an insecure TLS request must
 trigger blocking Bandit rule B501, and a low-severity assertion must warn
 without failing. The fixtures are deleted and the secure baseline is checked

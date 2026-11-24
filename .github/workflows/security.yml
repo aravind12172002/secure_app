@@ -15,6 +15,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Set up Python
         uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
@@ -34,6 +35,18 @@ jobs:
 
       - name: Scan complete Git history for secrets
         run: python scripts/git_history_scan.py "$RUNNER_TEMP/gitleaks/gitleaks"
+
+      - name: Install pinned zizmor
+        run: |
+          curl --fail --location --silent --show-error --retry 3 \
+            https://github.com/zizmorcore/zizmor/releases/download/v1.33.1/zizmor-x86_64-unknown-linux-gnu.tar.gz \
+            --output "$RUNNER_TEMP/zizmor.tar.gz"
+          echo "3e6a301c7a820a2501915f5a9de8c0486da82bdec7965f068477538a98743d43  $RUNNER_TEMP/zizmor.tar.gz" | sha256sum --check
+          mkdir -p "$RUNNER_TEMP/zizmor"
+          tar -xzf "$RUNNER_TEMP/zizmor.tar.gz" -C "$RUNNER_TEMP/zizmor"
+
+      - name: Scan GitHub Actions workflows
+        run: python scripts/workflow_security_scan.py "$RUNNER_TEMP/zizmor/zizmor"
 
       - name: Install pinned runtime and security tools
         run: python -m pip install --requirement requirements.lock

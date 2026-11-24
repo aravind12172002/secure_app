@@ -174,6 +174,7 @@ def run_secret_scan():
             "detect_secrets",
             "scan",
             "--all-files",
+            "--no-verify",
             "--exclude-files",
             r"(^|[\\/])\.git([\\/]|$)",
             "--exclude-files",

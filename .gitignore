@@ -8,5 +8,4 @@ reports/
 .env.*
 !.env.example
 brief.docx
-README.md
 task.txt
